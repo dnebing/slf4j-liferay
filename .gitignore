@@ -1,0 +1,7 @@
+
+/target/
+/.idea/
+/slf4j-liferay.iml
+**/.DS_Store
+.DS_Store
+

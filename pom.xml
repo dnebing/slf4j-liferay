@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.liferay</groupId>
+  <artifactId>slf4j-liferay</artifactId>
+  <version>1.7.12</version>
+  <packaging>jar</packaging>
+
+  <name>slf4j-liferay</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <parsedVersion.osgiVersion>${project.version}</parsedVersion.osgiVersion>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.liferay.portal</groupId>
+      <artifactId>com.liferay.portal.kernel</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>2.3.1</version>
+      <configuration>
+        <archive>
+          <manifestEntries>
+            <Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
+            <Bundle-Description>${project.description}</Bundle-Description>
+            <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+            <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+            <Implementation-Version>${project.version}</Implementation-Version>
+          </manifestEntries>
+          <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+        </archive>
+      </configuration>
+    </plugin>
+    </plugins>
+  </build>
+</project>
